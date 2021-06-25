@@ -8,10 +8,39 @@ from art import logo
 
 def game():
   print(logo)
+
   MYSTERY_NUMBER = random.choice(range(1,101))
+  game_over = False
+  guesses = 0
+
   print("Welcome to the number guessing game!")
   print("I'm thinking of a number between 1 and 100. Can you guess?")
   print(f"psst, the correct answer is {MYSTERY_NUMBER}")
   difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+
+  if difficulty == "easy":
+    guesses += 10
+  else:
+    guesses += 5
+
+  print(f"You chose {difficulty} and have {guesses} attempts to guess the number.")
+
+  while not game_over and guesses != 0:
+    player_guess = int(input("Make a guess: "))
+    if player_guess == MYSTERY_NUMBER:
+      print(f"You got it! The answer was {MYSTERY_NUMBER}")
+      game_over = True
+    elif player_guess > MYSTERY_NUMBER:
+      print("Too high.")
+      print("Guess Again.")
+      guesses -= 1
+      print(f"You have {guesses} remaining to guess the number.")
+    elif player_guess < MYSTERY_NUMBER:
+      print("Too Low.")
+      print("Guess Again.")
+      guesses -= 1
+      print(f"You have {guesses} remaining to guess the number.")
+    
+    
 
 game()
