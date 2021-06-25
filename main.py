@@ -25,21 +25,28 @@ def game():
 
   print(f"You chose {difficulty} and have {guesses} attempts to guess the number.")
 
-  while not game_over and guesses != 0:
+  while not game_over:
     player_guess = int(input("Make a guess: "))
     if player_guess == MYSTERY_NUMBER:
       print(f"You got it! The answer was {MYSTERY_NUMBER}")
+      game_over = True
+    elif guesses == 1:
+      if player_guess > MYSTERY_NUMBER:
+        print("Too high.")
+      elif player_guess < MYSTERY_NUMBER:
+        print("Too low.")
+      print("Sorry, you're out of guesses. Game over")
       game_over = True
     elif player_guess > MYSTERY_NUMBER:
       print("Too high.")
       print("Guess Again.")
       guesses -= 1
-      print(f"You have {guesses} remaining to guess the number.")
+      print(f"You have {guesses} attempts left.")
     elif player_guess < MYSTERY_NUMBER:
       print("Too Low.")
       print("Guess Again.")
       guesses -= 1
-      print(f"You have {guesses} remaining to guess the number.")
+      print(f"You have {guesses} attempts left.")
     
     
 
